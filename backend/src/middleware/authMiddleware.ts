@@ -1,5 +1,5 @@
 import type {Request,Response,NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { type JwtPayload } from 'jsonwebtoken';
 
 const authMiddleware = (req:Request,res:Response,next:NextFunction) => {
     try{           
@@ -7,7 +7,10 @@ const authMiddleware = (req:Request,res:Response,next:NextFunction) => {
         if(!accessToken){
             return res.status(401).json({message:"Not Autheticated"})
         }
-        const decode = jwt.verify(accessToken, process.env.SECURE_ACCESS as string);
+        const decode = jwt.verify(
+        accessToken,
+        process.env.SECURE_ACCESS as string
+        ) as JwtPayload & { id: string };
         req.user = decode;
         next();
     }catch(err){
