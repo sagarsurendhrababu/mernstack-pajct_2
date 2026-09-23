@@ -7,13 +7,18 @@ import Footer from '../Footer';
 import { useSelector } from 'react-redux';
 import type {RootState} from '../../../app/store/store';
 
-function PublicLayout() {
+function PrivateLayout() {
 
-  const isAuth = useSelector((state:RootState) => state.auth.isAuth)
+  const {isAuth,isLoading} = useSelector((state:RootState) => state.auth);
+
+  if(isLoading){
+    return (<h2>Loading...</h2>)
+  }
 
   if (!isAuth) {
     return <Navigate to="/signin" replace />;
   }
+
 
   return (
     <>
@@ -31,4 +36,4 @@ function PublicLayout() {
   )
 }
 
-export default PublicLayout
+export default PrivateLayout

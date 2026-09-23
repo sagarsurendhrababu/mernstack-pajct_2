@@ -3,6 +3,7 @@ import { Suspense, lazy } from 'react';
 import {Routes, Route} from 'react-router-dom';
 import PublicLayout from '../shared/components/layout/PublicLayout';
 import PrivateLayout from '../shared/components/layout/PrivateLayout';
+import Skelton from '../shared/components/layout/Skelton';
 
 const Signin = lazy(() => import('../features/auth/pages/Signin'));
 const Signup = lazy(() => import('../features/auth/pages/Signup'));
@@ -10,7 +11,6 @@ const Home = lazy(() => import('../features/dashboard/Home'));
 const About = lazy(() => import('../features/about/page/about'));
 const Users = lazy(() => import('../features/users/page/Users'))
 const PageNotFound = lazy(() => import('../shared/components/PageNotFound'));
-const Skelton = lazy(() => import('../shared/components/layout/Skelton'))
 
 function App() {  
   return (

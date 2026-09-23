@@ -33,9 +33,11 @@ function Header() {
                         <>
                             <Typography variant="body1" color="initial">{user?.email}</Typography>
                             <Button size="small" component={Link} to="/">Home</Button>
-                            <Button size="small" component={Link} to="/about">About</Button>
-                            <Button size="small" component={Link} to="/users">Users</Button>
-                            <Button size="small" onClick={handleSignout}>Signout</Button>                    
+                            <Button size="small" component={Link} to="/about">About</Button>                                                            
+                            { ["admin","superadmin"].includes(user.role) && (
+                                <Button size="small" component={Link} to="/users">Users</Button>
+                            )}    
+                            <Button size="small" onClick={handleSignout}>Signout</Button>                                         
                         </>
                         ): (
                         <>

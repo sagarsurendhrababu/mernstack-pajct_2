@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState:{isAuth:boolean, user:{email:string,role:string}} = {
+const initialState:{isAuth:boolean, user:{email:string,role:string} | null, isLoading:boolean} = {
     isAuth:false,
-    user:null
+    user:null,
+    isLoading:true
 }
 
 const authSlice = createSlice({
@@ -12,10 +13,12 @@ const authSlice = createSlice({
         loginSuccess:(state,action) => {
             state.isAuth = true;
             state.user = action.payload;
+            state.isLoading = false;
         },
         signoutAction:(state) => {
             state.isAuth = false;
             state.user = null;
+            state.isLoading =  false;
         }
     }
 });
