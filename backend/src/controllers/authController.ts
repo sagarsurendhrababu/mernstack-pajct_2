@@ -49,7 +49,7 @@ export const signinControler = async (req:Request,res:Response) => {
         httpOnly: true,
         secure:process.env.NODE_ENV === "production",
         sameSite:"strict",
-        maxAge: 5*60*1000
+        maxAge: 1*60*1000
     }).cookie("refreshtoken",refreshToken,{
         httpOnly:true,
         secure:process.env.NODE_ENV === "production",
@@ -64,8 +64,8 @@ export const signoutControler = async (_req:Request,res:Response) => {
         httpOnly:true,
         secure:process.env.NODE_ENV === "production",
         sameSite:'strict',
-        maxAge: 5*60*1000
-    }).clearCookie("redreshtoken",{
+        maxAge: 1*60*1000
+    }).clearCookie("refreshtoken",{
         httpOnly:true,
         secure:process.env.NODE_ENV === 'production',
         sameSite:'strict',
@@ -76,7 +76,7 @@ export const signoutControler = async (_req:Request,res:Response) => {
 //me controller
 export const meControl = async(req:Request,res:Response) => {
     const response = await userModel.findById(req.user.id).select("-password");
-    res.status(200).json({response})
+    res.status(200).json(response)
 }
 
 //refresh controller
@@ -95,5 +95,5 @@ export const refreshCOntroler = (req:Request,res:Response) => {
         secure: process.env.DEV_ENV === 'production',
         sameSite:'strict',
         maxAge: 5*60*1000
-    }).status(200).json({message:"refreshToken generated"})
+    }).status(200).json({message:"accessToken generated"})
 }

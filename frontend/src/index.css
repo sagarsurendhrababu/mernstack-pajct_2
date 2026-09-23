@@ -1,0 +1,10 @@
+*{margin: 0; padding:0; box-sizing: border-box;}
+
+header{height: 50px; background-color: thistle; width: 100%;}
+.logo{width: 10%; display: flex; align-items: center;}
+.nav{display: flex; justify-content:right; align-items: center; flex:1;}
+.bodyContent{min-height: calc(100vh - 100px); background-color: bisque; display: flex;}
+footer{height: 50px; background-color: thistle; width: 100%;}
+aside{background-color:rgb(240, 208, 169); height: auto;}
+
+.loginFormCanvas{background-color: #fff; border-radius: 10px; display: flex; flex-direction: column; width: 500px; gap: 10px; padding: 30px;}
