@@ -8,7 +8,7 @@ import Skelton from '../shared/components/layout/Skelton';
 const Signin = lazy(() => import('../features/auth/pages/Signin'));
 const Signup = lazy(() => import('../features/auth/pages/Signup'));
 const Home = lazy(() => import('../features/dashboard/Home'));
-const About = lazy(() => import('../features/about/page/about'));
+const About = lazy(() => import('../features/about/page/About'));
 const Users = lazy(() => import('../features/users/page/Users'))
 const PageNotFound = lazy(() => import('../shared/components/PageNotFound'));
 

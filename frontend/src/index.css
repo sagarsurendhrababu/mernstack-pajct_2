@@ -8,3 +8,6 @@ footer{height: 50px; background-color: thistle; width: 100%;}
 aside{background-color:rgb(240, 208, 169); height: auto;}
 
 .loginFormCanvas{background-color: #fff; border-radius: 10px; display: flex; flex-direction: column; width: 500px; gap: 10px; padding: 30px;}
+
+.wrapper{width: 100%; height: auto; position: absolute; left: 0; right: 0; background-color: #333; display: flex; justify-content: center; align-items: center;}
+.modal{width: 600px; min-height: 50vh; background-color: #fff;}

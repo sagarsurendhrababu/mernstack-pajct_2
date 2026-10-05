@@ -1,0 +1,41 @@
+services:
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    container_name: prod-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+    environment:
+      DB: mongodb://${MONGO_PROD_USER}:${MONGO_PROD_PASS}@mongodb:27017/${MONGO_PROD_DB}?authSource=admin      
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: prod-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  mongodb:
+    image: mongo:8
+    container_name: prod-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_PROD_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PROD_PASS}
+      MONGO_INITDB_DATABASE: ${MONGO_PROD_DB}
+
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:      

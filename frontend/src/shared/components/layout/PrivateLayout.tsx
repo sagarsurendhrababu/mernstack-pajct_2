@@ -27,7 +27,7 @@ function PrivateLayout() {
           <Container maxWidth="xl">
               <Box sx={{width:"100%",display:"flex", height:"100%"}}>
                 <Box component={"aside"} sx={{width:{xs:"60px",md:"20%"}}}>aside</Box>
-                <Box component={"section"}><Outlet/></Box>                
+                <Box component={"section"} sx={{width:"100%", padding:1}}><Outlet/></Box>                
               </Box>          
           </Container>
       </Box> 

@@ -18,11 +18,17 @@ export const userGet = async (req:Request,res:Response) => {
 
 export const userCreate = async (req:Request,res:Response) => {
     const {email,password} = req.body;
-    authValidator({email,password})
+    authValidator({email,password});
+    const existUser = await userModel.findOne({email});
+    if(existUser){
+        throw new Error("This user Already exisit");
+    }
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password,salt);
-    await userModel.create({email,password:hash});    
-    return res.status(201).json({message:"User has been created successfully"});
+    const response  = await userModel.create({email,password:hash})    
+    const userResponse = response.toObject();
+    delete userResponse.password;    
+    return res.status(201).json(userResponse);
 }
 
 export const userUpdatePass = async(req:Request,res:Response) => {
@@ -32,7 +38,7 @@ export const userUpdatePass = async(req:Request,res:Response) => {
     const hash = await bcrypt.hash(password,salt);
     await userModel.findByIdAndUpdate(id, {password:hash} , { new: true } );
     return res.status(200).json("Successfuly updated password");
-}
+} 
 
 export const userUpdateRole = async(req:Request,res:Response) => {
     const {role} = req.body;

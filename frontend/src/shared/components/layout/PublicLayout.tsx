@@ -4,7 +4,6 @@ import { Navigate } from 'react-router-dom';
 
 import Header from '../Header';
 import Footer from '../Footer';
-import Skelton from './Skelton';
 
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../../app/store/store';

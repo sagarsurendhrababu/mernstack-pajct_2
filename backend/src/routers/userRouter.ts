@@ -7,7 +7,7 @@ import {userGet, userUpdatePass, userUpdateRole, userDelete, userCreate} from '.
 router.get("/users", authMiddleware, roleMiddleware(["admin","superadmin"]), userGet);
 router.put("/password/:id", userUpdatePass);
 router.put("/role/:id", userUpdateRole);
-router.delete("/", userDelete);
-router.post("/user", userCreate);
+router.delete("/:id", userDelete);
+router.post("/", userCreate);
 
 export default router;
